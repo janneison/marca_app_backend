@@ -40,3 +40,18 @@ class Retraso(BasePermisoModel):
     motivo = models.CharField(max_length=255)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
+class Permisos(BasePermisoModel):
+    tipoAsig = (
+        (1,u'Vacaciones'),
+        (2,u'Licencia Medica'),
+        (3,u'Permiso Especial'),
+        (4,u'Entrada con Retraso'),
+        (5,u'Salida Anticipada')
+    )
+    fechaInicio = 	models.DateField()
+    fechaFin = models.DateField()
+    tipoAsignacion = models.IntegerField(choices=tipoAsig,default=1)
+    autorizado = models.ForeignKey(Persona, on_delete=models.CASCADE)
+    estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    observacion = models.CharField(max_length=255)
+

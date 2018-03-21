@@ -22,7 +22,7 @@ class PermisoSerializer(serializers.HyperlinkedModelSerializer):
     estado_id=serializers.PrimaryKeyRelatedField(write_only=True,queryset=Estado.objects.all())
     class Meta:
         model = Permiso
-        fields=('id','fechaInicio','fechaFin','tipoAsignacion','observacio',
+        fields=('id','fechaInicio','fechaFin','tipoAsignacion','observacion',
         'autorizado','autorizado_id','estado','estado_id')
 
 

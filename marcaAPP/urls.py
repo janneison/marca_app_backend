@@ -19,7 +19,7 @@ from django.conf.urls import url,include
 from rest_framework import routers
 from parametrizacion import views
 from asistencia.views import (AsistenciaViewSet, RetrasoViewSet, listaProyectos, 
-ultimasAsistencias, HorarioViewSet,listaDeNovedades)
+ultimasAsistencias, HorarioViewSet,listaDeNovedades, PermisoViewSet)
 from rest_framework.schemas import get_schema_view
 from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
 
@@ -40,6 +40,7 @@ router.register(r'proyectoUsuarios', views.ProyectoUsuarioViewSet)
 router.register(r'asistencias', AsistenciaViewSet)
 router.register(r'retrasos', RetrasoViewSet)
 router.register(r'horarios', HorarioViewSet)
+router.register(r'permisos', HorarioViewSet)
 #router.register(r'proyectosAsignados', listaProyectos,base_name="asignados")
 
 schema_view = get_schema_view(title='Documentacion Marca APP API',renderer_classes=[OpenAPIRenderer, SwaggerUIRenderer])

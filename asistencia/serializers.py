@@ -1,8 +1,8 @@
 from django.contrib.auth.models import Group
 from rest_framework import serializers
-from asistencia.models import (Horario, Asistencia, Retraso)
+from asistencia.models import (Horario, Asistencia, Retraso, Permiso)
 from parametrizacion.serializers import (UserSerializer, PersonaSerializer,
-ProyectoSerializer)
+ProyectoSerializer, EstadoSerializer)
 from parametrizacion.models import (Pais, Region, Municipio, Empresa, Cargo, 
 User, ContactoEmpresa, Persona, Estado, Tipo, Proyecto,ProyectoUsuario)
 
@@ -14,6 +14,17 @@ class AsistenciaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Asistencia
         fields=('id','usuario','usuario_id','proyecto','proyecto_id','entrada','horaEntrada','longitud','latitud')
+
+class PermisoSerializer(serializers.HyperlinkedModelSerializer):
+    autorizado=PersonaSerializer(read_only=True)
+    autorizado_id=serializers.PrimaryKeyRelatedField(write_only=True,queryset=Persona.objects.all())
+    estado=EstadoSerializer(read_only=True)
+    estado_id=serializers.PrimaryKeyRelatedField(write_only=True,queryset=Estado.objects.all())
+    class Meta:
+        model = Permiso
+        fields=('id','fechaInicio','fechaFin','tipoAsignacion','observacio',
+        'autorizado','autorizado_id','estado','estado_id')
+
 
 class RetrasoSerializer(serializers.HyperlinkedModelSerializer):
     usuario=UserSerializer(read_only=True)

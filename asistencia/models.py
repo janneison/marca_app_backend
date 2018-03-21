@@ -40,7 +40,7 @@ class Retraso(BasePermisoModel):
     motivo = models.CharField(max_length=255)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
-class Permisos(BasePermisoModel):
+class Permiso(BasePermisoModel):
     tipoAsig = (
         (1,u'Vacaciones'),
         (2,u'Licencia Medica'),

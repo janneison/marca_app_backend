@@ -40,7 +40,7 @@ router.register(r'proyectoUsuarios', views.ProyectoUsuarioViewSet)
 router.register(r'asistencias', AsistenciaViewSet)
 router.register(r'retrasos', RetrasoViewSet)
 router.register(r'horarios', HorarioViewSet)
-router.register(r'permisos', PermisosViewSet)
+router.register(r'permisos', PermisoViewSet)
 #router.register(r'proyectosAsignados', listaProyectos,base_name="asignados")
 
 schema_view = get_schema_view(title='Documentacion Marca APP API',renderer_classes=[OpenAPIRenderer, SwaggerUIRenderer])

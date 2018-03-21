@@ -127,9 +127,9 @@ class TipoSerializer(serializers.HyperlinkedModelSerializer):
 class ProyectoSerializer(serializers.HyperlinkedModelSerializer):
     municipio_id = serializers.PrimaryKeyRelatedField(write_only=True,queryset=Municipio.objects.all())
     municipio = MunicipioSerializer(read_only=True)
-    estado_id = serializers.PrimaryKeyRelatedField(write_only=True,queryset=Estado.objects.all())
+    estado_id = serializers.PrimaryKeyRelatedField(write_only=True,queryset=Estado.objects.all(),allow_null=True)
     #estado = EstadoSerializer(read_only=True)
-    tipo_id = serializers.PrimaryKeyRelatedField(write_only=True,queryset=Tipo.objects.all())
+    tipo_id = serializers.PrimaryKeyRelatedField(write_only=True,queryset=Tipo.objects.all(),allow_null=True)
     #tipo = EstadoSerializer(read_only=True)
     usuarios = serializers.SerializerMethodField('_contadorProyecto',read_only=True)
     supervisor = serializers.SerializerMethodField('_proyectoSupervisor',read_only=True)
@@ -137,7 +137,7 @@ class ProyectoSerializer(serializers.HyperlinkedModelSerializer):
     empresa=EmpresaSerializer(read_only=True)
     empresa_id=serializers.PrimaryKeyRelatedField(write_only=True,queryset=Empresa.objects.all())
     contacto=PersonaSerializer(read_only=True)
-    contacto_id=serializers.PrimaryKeyRelatedField(write_only=True,queryset=Persona.objects.all())
+    contacto_id=serializers.PrimaryKeyRelatedField(write_only=True,queryset=Persona.objects.all(),allow_null=True)
 
     def _contadorProyecto(self,obj):
         usuarios = ProyectoUsuario.objects.filter(proyecto_id=obj.id)
